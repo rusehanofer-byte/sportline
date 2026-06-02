@@ -3,367 +3,580 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Гид по выбору беговых дорожек SPORTLINE</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            red: '#E10600',
-                            dark: '#1E293B',
-                            light: '#F8FAFC',
-                            accent: '#0F172A'
-                        }
-                    }
-                }
+    <title>Гид покупателя: Беговые дорожки inSPORTline</title>
+    <style>
+        :root {
+            --primary-color: #e30613;
+            --dark-color: #0f1c2c;
+            --light-bg: #f4f6f9;
+            --border-color: #dcdcdc;
+            --text-color: #333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            background: #fff;
+            max-width: 1000px;
+            width: 100%;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* Шапка */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .logo-area h1 {
+            font-size: 24px;
+            color: var(--dark-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-area span {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .logo-area p {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .btn-print {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-print:hover {
+            opacity: 0.9;
+        }
+
+        /* Интерактивный помощник */
+        .filter-section {
+            background: var(--light-bg);
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+            border-left: 4px solid var(--dark-color);
+        }
+
+        .filter-section h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .filter-group label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .filter-group select {
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: white;
+            font-size: 14px;
+            outline: none;
+        }
+
+        /* Шпаргалка параметров */
+        .info-tips {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+            background: #fff8f8;
+            border: 1px solid #ffe3e3;
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        .tip-box {
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .tip-box strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        /* Основная таблица (для ПК) */
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 14px 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 15px 10px;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: middle;
+        }
+
+        tr:hover {
+            background-color: #f9fbfd;
+        }
+
+        .prod-title {
+            font-weight: bold;
+            color: var(--dark-color);
+            font-size: 15px;
+        }
+
+        .prod-art {
+            font-size: 11px;
+            color: #888;
+            margin-top: 3px;
+        }
+
+        .price-tag {
+            color: var(--primary-color);
+            font-weight: 800;
+            font-size: 16px;
+            white-space: nowrap;
+        }
+
+        /* Скрытие карточек на ПК */
+        .cards-wrapper {
+            display: none;
+        }
+
+        /* Мягкое скрытие не подошедших моделей при фильтрации */
+        .fade-out {
+            opacity: 0.25;
+        }
+
+        /* АДАПТИВНОСТЬ ДЛЯ ТЕЛЕФОНОВ (Переломный момент) */
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 15px;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .btn-print {
+                width: 100%;
+                text-align: center;
+            }
+
+            /* Скрываем стандартную таблицу, так как она ломает экран */
+            .table-wrapper {
+                display: none;
+            }
+
+            /* Включаем режим карточек */
+            .cards-wrapper {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .prod-card {
+                background: white;
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+                padding: 15px;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+                transition: opacity 0.3s ease;
+            }
+
+            .card-header {
+                border-bottom: 1px solid var(--border-color);
+                padding-bottom: 10px;
+                margin-bottom: 12px;
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+            }
+
+            .card-details {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px 15px;
+                font-size: 13px;
+            }
+
+            .detail-item strong {
+                display: block;
+                color: #777;
+                font-size: 11px;
+                text-transform: uppercase;
+                margin-bottom: 2px;
+            }
+
+            .detail-item span {
+                color: var(--dark-color);
+                font-weight: 600;
             }
         }
-    </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-        }
+
+        /* СТИЛИ ДЛЯ ИДЕАЛЬНОЙ ПЕЧАТИ НА А4 */
         @media print {
             body {
                 background: white;
-                color: black;
-                font-size: 10px;
-                margin: 0;
                 padding: 0;
+                color: black;
             }
-            .no-print {
+            .container {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+            .filter-section, .btn-print, .info-tips {
+                display: none !important; /* Убираем весь интерактив с бумаги */
+            }
+            .table-wrapper {
+                display: block !important; /* На печать ВСЕГДА идет чистая таблица */
+            }
+            .cards-wrapper {
                 display: none !important;
             }
-            .print-container {
-                width: 210mm;
-                height: 297mm;
-                padding: 5mm;
-                box-shadow: none !important;
-                background: white !important;
+            table {
+                font-size: 12px;
             }
-            tr {
-                page-break-inside: avoid;
+            td, th {
+                padding: 8px 5px;
+                border-bottom: 1px solid #000;
             }
-            .highlight-badge {
-                border: 1px solid #ccc !important;
-                background: transparent !important;
-                color: black !important;
+            .fade-out {
+                opacity: 1 !important; /* На печати отображать все позиции */
             }
         }
     </style>
 </head>
-<body class="bg-slate-100 text-slate-800 antialiased min-h-screen py-6 px-4">
+<body>
 
-    <!-- Main Container designed to fit on A4 or look beautiful on tablet -->
-    <div class="print-container max-w-[210mm] mx-auto bg-white rounded-2xl shadow-xl p-6 transition-all">
-        
-        <!-- HEADER -->
-        <div class="flex justify-between items-start border-b-2 border-brand-red pb-4 mb-4">
-            <div>
-                <div class="flex items-center gap-2">
-                    <span class="bg-brand-red text-white text-xs font-bold px-2 py-1 rounded">SPORTLINE</span>
-                    <h1 class="text-xl font-extrabold tracking-tight text-brand-dark">Гид покупателя: Беговые дорожки</h1>
-                </div>
-                <p class="text-xs text-slate-500 mt-1">Подберите идеальную модель под ваши параметры и цели тренировок</p>
-            </div>
-            <div class="text-right no-print">
-                <button onclick="window.print()" class="bg-brand-red hover:bg-red-700 text-white text-xs font-semibold py-1.5 px-4 rounded-lg shadow transition flex items-center gap-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-                    </svg>
-                    Печать А4
-                </button>
-            </div>
+<div class="container">
+    <!-- Шапка -->
+    <div class="header">
+        <div class="logo-area">
+            <h1><span>SPORT LINE</span> Беговые дорожки</h1>
+            <p>Гид покупателя: подбор идеальной модели под ваши параметры</p>
         </div>
-
-        <!-- INTERACTIVE FILTER (NO-PRINT) -->
-        <div class="no-print bg-slate-50 rounded-xl p-4 mb-4 border border-slate-200">
-            <h3 class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 flex items-center gap-1">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-brand-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                </svg>
-                Интерактивный помощник продавца
-            </h3>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <!-- Weight Filter -->
-                <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Вес пользователя:</label>
-                    <select id="weight-filter" onchange="filterTreadmills()" class="w-full text-xs bg-white border border-slate-300 rounded px-2 py-1 focus:outline-none focus:border-brand-red">
-                        <option value="all">Любой вес</option>
-                        <option value="100">До 100 кг</option>
-                        <option value="110">До 110 кг</option>
-                        <option value="120">До 120 кг</option>
-                        <option value="150">До 150 кг</option>
-                    </select>
-                </div>
-                <!-- Intensity Filter -->
-                <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Интенсивность тренировки:</label>
-                    <select id="intensity-filter" onchange="filterTreadmills()" class="w-full text-xs bg-white border border-slate-300 rounded px-2 py-1 focus:outline-none focus:border-brand-red">
-                        <option value="all">Любая</option>
-                        <option value="walk">Только ходьба (до 10 км/ч)</option>
-                        <option value="light">Легкий бег (до 15 км/ч)</option>
-                        <option value="pro">Профи-бег (от 16 км/ч + наклон)</option>
-                    </select>
-                </div>
-                <!-- Budget Filter -->
-                <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Бюджет:</label>
-                    <select id="budget-filter" onchange="filterTreadmills()" class="w-full text-xs bg-white border border-slate-300 rounded px-2 py-1 focus:outline-none focus:border-brand-red">
-                        <option value="all">Любой</option>
-                        <option value="10000">До 10 000 MDL</option>
-                        <option value="20000">До 20 000 MDL</option>
-                        <option value="30000">До 30 000 MDL</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <!-- QUICK GUIDELINE SUMMARY FOR CLIENTS -->
-        <div class="grid grid-cols-3 gap-3 mb-4 text-[11px] bg-slate-50 p-2 rounded-lg border border-slate-100">
-            <div class="flex items-start gap-2">
-                <span class="text-brand-red font-bold">⚡ Мощность:</span>
-                <span>Для бега выбирайте от 1.75 л.с. Для ходьбы и легкого бега достаточно до 1.5 л.с.</span>
-            </div>
-            <div class="flex items-start gap-2 border-l border-slate-200 pl-2">
-                <span class="text-brand-red font-bold">📏 Полотно:</span>
-                <span>Ширина от 45 см комфортна для быстрого бега. Для ходьбы подходят компактные ленты (35-40 см).</span>
-            </div>
-            <div class="flex items-start gap-2 border-l border-slate-200 pl-2">
-                <span class="text-brand-red font-bold">🏋️ Вес (Запас):</span>
-                <span>Рекомендуется выбирать дорожку с запасом по весу минимум в 15-20 кг больше веса пользователя.</span>
-            </div>
-        </div>
-
-        <!-- MAIN TABLE -->
-        <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse text-xs" id="comparison-table">
-                <thead>
-                    <tr class="bg-slate-900 text-white uppercase text-[10px] tracking-wider">
-                        <th class="p-2 border border-slate-700 rounded-tl-lg">Модель</th>
-                        <th class="p-2 border border-slate-700 text-center">Цена (MDL)</th>
-                        <th class="p-2 border border-slate-700 text-center">Макс. вес</th>
-                        <th class="p-2 border border-slate-700 text-center">Скорость / Мотор</th>
-                        <th class="p-2 border border-slate-700 text-center">Размер полотна</th>
-                        <th class="p-2 border border-slate-700 text-center">Угол наклона</th>
-                        <th class="p-2 border border-slate-700">Главное преимущество / Для кого</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- ZenRun 120 -->
-                    <tr class="treadmill-row border-b border-slate-200 hover:bg-slate-50 transition-colors" 
-                        data-weight="150" data-speed="22" data-price="32999" data-incline="elec">
-                        <td class="p-2 font-bold text-slate-900 border-r border-slate-100">
-                            ZenRun 120 <br>
-                            <span class="text-[9px] text-slate-400 font-normal">Арт. 28767</span>
-                        </td>
-                        <td class="p-2 text-center font-bold text-brand-red border-r border-slate-100 text-sm">32 999</td>
-                        <td class="p-2 text-center font-semibold border-r border-slate-100">150 кг</td>
-                        <td class="p-2 text-center border-r border-slate-100">
-                            <span class="font-bold">22 км/ч</span><br>
-                            <span class="text-[9px] text-slate-500">BLDC бесщеточный (4 л.с.)</span>
-                        </td>
-                        <td class="p-2 text-center border-r border-slate-100">150 х 52 см</td>
-                        <td class="p-2 text-center border-r border-slate-100">Электронный<br><span class="text-[10px] text-slate-500">(12 уровней / до 12%)</span></td>
-                        <td class="p-2">
-                            <div class="font-semibold text-emerald-700 text-[11px] mb-1">⭐ Флагман и Мультимедиа-центр</div>
-                            <span class="text-slate-600 block leading-relaxed text-[10px]">
-                                Поворотный сенсорный 15.6" экран, предустановленные <strong>Netflix, YouTube, Spotify</strong>. Идеально для тяжелых пользователей, профессионального бега и интерактива в приложениях (Kinomap/Zwift).
-                            </span>
-                        </td>
-                    </tr>
-
-                    <!-- ZenRun 30 -->
-                    <tr class="treadmill-row border-b border-slate-200 hover:bg-slate-50 transition-colors" 
-                        data-weight="120" data-speed="18" data-price="27500" data-incline="elec">
-                        <td class="p-2 font-bold text-slate-900 border-r border-slate-100">
-                            ZenRun 30 <br>
-                            <span class="text-[9px] text-slate-400 font-normal">Арт. 26634</span>
-                        </td>
-                        <td class="p-2 text-center font-bold text-brand-red border-r border-slate-100 text-sm">27 500</td>
-                        <td class="p-2 text-center font-semibold border-r border-slate-100">120 кг</td>
-                        <td class="p-2 text-center border-r border-slate-100">
-                            <span class="font-bold">18 км/ч</span><br>
-                            <span class="text-[9px] text-slate-500">Электрический (2.5 л.с.)</span>
-                        </td>
-                        <td class="p-2 text-center border-r border-slate-100">140 х 46 см</td>
-                        <td class="p-2 text-center border-r border-slate-100">Электронный<br><span class="text-[10px] text-slate-500">(15 уровней / до 8.2%)</span></td>
-                        <td class="p-2">
-                            <div class="font-semibold text-blue-700 text-[11px] mb-1">⭐ Баланс цены и возможностей</div>
-                            <span class="text-slate-600 block leading-relaxed text-[10px]">
-                                Мощная классика с широким полотном. <strong>Нагрудный датчик пульса Polar в комплекте</strong> для точного контроля HRC-тренировок. Качественная амортизация Silent Block.
-                            </span>
-                        </td>
-                    </tr>
-
-                    <!-- ZenRun 20 -->
-                    <tr class="treadmill-row border-b border-slate-200 hover:bg-slate-50 transition-colors" 
-                        data-weight="120" data-speed="14" data-price="20900" data-incline="elec">
-                        <td class="p-2 font-bold text-slate-900 border-r border-slate-100">
-                            ZenRun 20 <br>
-                            <span class="text-[9px] text-slate-400 font-normal">Арт. 26635</span>
-                        </td>
-                        <td class="p-2 text-center font-bold text-brand-red border-r border-slate-100 text-sm">20 900</td>
-                        <td class="p-2 text-center font-semibold border-r border-slate-100">120 кг</td>
-                        <td class="p-2 text-center border-r border-slate-100">
-                            <span class="font-bold">14.8 км/ч</span><br>
-                            <span class="text-[9px] text-slate-500">BLDC бесщеточный (2.5 л.с.)</span>
-                        </td>
-                        <td class="p-2 text-center border-r border-slate-100">123 x 46 см</td>
-                        <td class="p-2 text-center border-r border-slate-100">Электронный<br><span class="text-[10px] text-slate-500">(18 уровней / до 6.1%)</span></td>
-                        <td class="p-2">
-                            <div class="font-semibold text-indigo-700 text-[11px] mb-1">⭐ Бесшумность и компактность</div>
-                            <span class="text-slate-600 block leading-relaxed text-[10px]">
-                                <strong>Долговечный и тихий бесщеточный мотор</strong>. Сверхплоское складывание (высота всего 18 см) — можно хранить под кроватью или за шкафом. Лучший выбор для квартир.
-                            </span>
-                        </td>
-                    </tr>
-
-                    <!-- ZenRun 15 -->
-                    <tr class="treadmill-row border-b border-slate-200 hover:bg-slate-50 transition-colors" 
-                        data-weight="110" data-speed="16" data-price="15600" data-incline="none">
-                        <td class="p-2 font-bold text-slate-900 border-r border-slate-100">
-                            ZenRun 15 <br>
-                            <span class="text-[9px] text-slate-400 font-normal">Арт. 26826</span>
-                        </td>
-                        <td class="p-2 text-center font-bold text-brand-red border-r border-slate-100 text-sm">15 600</td>
-                        <td class="p-2 text-center font-semibold border-r border-slate-100">110 кг</td>
-                        <td class="p-2 text-center border-r border-slate-100">
-                            <span class="font-bold">16 км/ч</span><br>
-                            <span class="text-[9px] text-slate-500">Электрический (1.75 л.с.)</span>
-                        </td>
-                        <td class="p-2 text-center border-r border-slate-100">122 х 45 см</td>
-                        <td class="p-2 text-center border-r border-slate-100 text-slate-400">Нет угла наклона</td>
-                        <td class="p-2">
-                            <div class="font-semibold text-amber-700 text-[11px] mb-1">⭐ Оптимальный бюджет для бега</div>
-                            <span class="text-slate-600 block leading-relaxed text-[10px]">
-                                Доступный вариант для полноценного бега дома. <strong>40 встроенных программ тренировок</strong>, поддержка приложений Zwift и Kinomap. Складывается до 26.5 см в толщину.
-                            </span>
-                        </td>
-                    </tr>
-
-                    <!-- ZenRun Noon -->
-                    <tr class="treadmill-row border-b border-slate-200 hover:bg-slate-50 transition-colors" 
-                        data-weight="120" data-speed="12" data-price="8499" data-incline="fixed">
-                        <td class="p-2 font-bold text-slate-900 border-r border-slate-100">
-                            ZenRun Noon <br>
-                            <span class="text-[9px] text-slate-400 font-normal">Арт. 28905</span>
-                        </td>
-                        <td class="p-2 text-center font-bold text-brand-red border-r border-slate-100 text-sm">8 499</td>
-                        <td class="p-2 text-center font-semibold border-r border-slate-100">120 кг</td>
-                        <td class="p-2 text-center border-r border-slate-100">
-                            <span class="font-bold">12 км/ч</span><br>
-                            <span class="text-[9px] text-slate-500">Электрический (0.75 л.с.)</span>
-                        </td>
-                        <td class="p-2 text-center border-r border-slate-100">100 х 40 см</td>
-                        <td class="p-2 text-center border-r border-slate-100">Фиксированный<br><span class="text-[10px] text-slate-500">наклон 5% (2.9°)</span></td>
-                        <td class="p-2">
-                            <div class="font-semibold text-rose-700 text-[11px] mb-1">⭐ Уникальный формат 2-в-1</div>
-                            <span class="text-slate-600 block leading-relaxed text-[10px]">
-                                С одной стороны — дорожка для ходьбы и работы за регулируемым столом, с обратной — <strong>автоматический массажер стоп</strong>. Идеально для дома, офиса и реабилитации.
-                            </span>
-                        </td>
-                    </tr>
-
-                    <!-- Excel Run -->
-                    <tr class="treadmill-row hover:bg-slate-50 transition-colors" 
-                        data-weight="100" data-speed="0" data-price="8220" data-incline="manual">
-                        <td class="p-2 font-bold text-slate-900 border-r border-slate-100">
-                            Excel Run <br>
-                            <span class="text-[9px] text-slate-400 font-normal">Арт. 2678</span>
-                        </td>
-                        <td class="p-2 text-center font-bold text-brand-red border-r border-slate-100 text-sm">8 220</td>
-                        <td class="p-2 text-center font-semibold border-r border-slate-100">100 кг</td>
-                        <td class="p-2 text-center border-r border-slate-100">
-                            <span class="font-bold">Без лимита</span><br>
-                            <span class="text-[9px] text-slate-500">Магнитная (без мотора!)</span>
-                        </td>
-                        <td class="p-2 text-center border-r border-slate-100">110 х 35 см</td>
-                        <td class="p-2 text-center border-r border-slate-100">Ручной наклон<br><span class="text-[10px] text-slate-500">(2 уровня / до 12.3%)</span></td>
-                        <td class="p-2">
-                            <div class="font-semibold text-purple-700 text-[11px] mb-1">⭐ Автономность и скандинавская ходьба</div>
-                            <span class="text-slate-600 block leading-relaxed text-[10px]">
-                                Полная энергонезависимость (работает от батареек). Специальные <strong>подвижные рычаги для имитации скандинавской ходьбы</strong> с отдельной регулировкой сопротивления.
-                            </span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- PRINT FOOTER -->
-        <div class="mt-6 pt-3 border-t border-slate-200 text-center text-[10px] text-slate-500 flex justify-between items-center">
-            <div>SPORTLINE Fitness — Качество и надежность европейского бренда</div>
-            <div class="font-bold text-brand-red">Все цены указаны в MDL</div>
-        </div>
-
+        <button class="btn-print" onclick="window.print()">Печать А4</button>
     </div>
 
-    <!-- Interactive script for sales assistance -->
-    <script>
-        function filterTreadmills() {
-            const weightVal = document.getElementById('weight-filter').value;
-            const intensityVal = document.getElementById('intensity-filter').value;
-            const budgetVal = document.getElementById('budget-filter').value;
-            
-            const rows = document.querySelectorAll('.treadmill-row');
-            
-            rows.forEach(row => {
-                const maxWeight = parseInt(row.getAttribute('data-weight'));
-                const maxSpeed = parseFloat(row.getAttribute('data-speed'));
-                const price = parseInt(row.getAttribute('data-price'));
-                const incline = row.getAttribute('data-incline');
-                
-                let matchesWeight = true;
-                let matchesIntensity = true;
-                let matchesBudget = true;
-                
-                // Weight filtering
-                if (weightVal !== 'all') {
-                    const requiredWeight = parseInt(weightVal);
-                    // We check if treadmill capacity is enough for the target user weight
-                    if (maxWeight < requiredWeight) {
-                        matchesWeight = false;
-                    }
+    <!-- Помощник продавца -->
+    <div class="filter-section">
+        <h3>🔍 Интерактивный помощник продавца</h3>
+        <div class="filter-grid">
+            <div class="filter-group">
+                <label for="weightFilter">Вес пользователя:</label>
+                <select id="weightFilter" onchange="filterTreadmills()">
+                    <option value="all">Любой вес</option>
+                    <option value="100">До 100 кг</option>
+                    <option value="110">До 110 кг</option>
+                    <option value="120">До 120 кг</option>
+                    <option value="150">До 150 кг</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="intensityFilter">Цель / Интенсивность:</label>
+                <select id="intensityFilter" onchange="filterTreadmills()">
+                    <option value="all">Любая интенсивность</option>
+                    <option value="walk">Ходьба и легкий бег (до 12 км/ч)</option>
+                    <option value="medium">Активный бег (14-18 км/ч)</option>
+                    <option value="pro">Профи / Высокие нагрузки (22 км/ч)</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Краткая шпаргалка -->
+    <div class="info-tips">
+        <div class="tip-box">
+            <strong>⚡ Мощность мотора:</strong>
+            Для ходьбы достаточно до 1.5 л.с. Для уверенного бега выбирайте от 1.75 - 2.5 л.с.
+        </div>
+        <div class="tip-box">
+            <strong>🏃 Беговое полотно:</strong>
+            Ширина 40-45 см комфортна для быстрого шага и бега. 50+ см — уровень спортзала.
+        </div>
+        <div class="tip-box">
+            <strong>⚖️ Запас по весу:</strong>
+            Рекомендуется выбирать дорожку с запасом по максимальному весу минимум в 15-20 кг.
+        </div>
+    </div>
+
+    <!-- ТАБЛИЧНАЯ ВЕРСИЯ (Отображается на ПК и идет на печать) -->
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Модель и артикул</th>
+                    <th>Цена (MDL)</th>
+                    <th>Макс. вес</th>
+                    <th>Скорость / Мотор</th>
+                    <th>Размер полотна</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <tr class="treadmill-row" data-weight="150" data-speed="22">
+                    <td>
+                        <div class="prod-title">inSPORTline ZenRun 120</div>
+                        <div class="prod-art">Арт: 28767 (12920)</div>
+                    </td>
+                    <td><div class="price-tag">32 999</div></td>
+                    <td><b>150 кг</b></td>
+                    <td>22 км/ч<br><small style="color:#666">BLDC бесщёточный (2.5 л.с.)</small></td>
+                    <td>150 x 52 см</td>
+                </tr>
+                <tr class="treadmill-row" data-weight="120" data-speed="18">
+                    <td>
+                        <div class="prod-title">inSPORTline ZenRun 30</div>
+                        <div class="prod-art">Арт: 26634 (12089)</div>
+                    </td>
+                    <td><div class="price-tag">27 500</div></td>
+                    <td><b>120 кг</b></td>
+                    <td>18 км/ч<br><small style="color:#666">Электрический (1.75 л.с.)</small></td>
+                    <td>140 x 46 см</td>
+                </tr>
+                <tr class="treadmill-row" data-weight="120" data-speed="14.8">
+                    <td>
+                        <div class="prod-title">inSPORTline ZenRun 20</div>
+                        <div class="prod-art">Арт: 26635 (12173)</div>
+                    </td>
+                    <td><div class="price-tag">20 900</div></td>
+                    <td><b>120 кг</b></td>
+                    <td>14.8 км/ч<br><small style="color:#666">BLDC бесщёточный (1.5 л.с.)</small></td>
+                    <td>123 x 46 см</td>
+                </tr>
+                <tr class="treadmill-row" data-weight="110" data-speed="18">
+                    <td>
+                        <div class="prod-title">inSPORTline ZenRun 15</div>
+                        <div class="prod-art">Арт: 26826 (12759)</div>
+                    </td>
+                    <td><div class="price-tag">15 600</div></td>
+                    <td><b>110 кг</b></td>
+                    <td>18 км/ч<br><small style="color:#666">Электрический (1.75 л.с.)</small></td>
+                    <td>122 x 45 см</td>
+                </tr>
+                <tr class="treadmill-row" data-weight="120" data-speed="12">
+                    <td>
+                        <div class="prod-title">inSPORTline ZenRun Noon</div>
+                        <div class="prod-art">Арт: 28905 (12921)</div>
+                    </td>
+                    <td><div class="price-tag">8 499</div></td>
+                    <td><b>120 кг</b></td>
+                    <td>12 км/ч<br><small style="color:#666">Электрический (0.75 л.с.)</small></td>
+                    <td>100 x 40 см</td>
+                </tr>
+                <tr class="treadmill-row" data-weight="100" data-speed="0">
+                    <td>
+                        <div class="prod-title">inSPORTline Excel Run</div>
+                        <div class="prod-art">Арт: 2678 (2871)</div>
+                    </td>
+                    <td><div class="price-tag">8 220</div></td>
+                    <td><b>100 кг</b></td>
+                    <td>Без лимита<br><small style="color:#666">Магнитная (Без мотора)</small></td>
+                    <td>110 x 35 см</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- МОБИЛЬНАЯ ВЕРСИЯ (Карточки, включаются только на экранах < 768px) -->
+    <div class="cards-wrapper" id="cardsBody">
+        <!-- Карточка 1 -->
+        <div class="prod-card treadmill-card" data-weight="150" data-speed="22">
+            <div class="card-header">
+                <div>
+                    <div class="prod-title">ZenRun 120</div>
+                    <div class="prod-art">Арт: 28767</div>
+                </div>
+                <div class="price-tag">32 999 MDL</div>
+            </div>
+            <div class="card-details">
+                <div class="detail-item"><strong>Макс. вес:</strong><span>150 кг</span></div>
+                <div class="detail-item"><strong>Полотно:</strong><span>150 x 52 см</span></div>
+                <div class="detail-item" style="grid-column: span 2"><strong>Скорость / Двигатель:</strong><span>22 км/ч (BLDC 2.5 л.с.)</span></div>
+            </div>
+        </div>
+        <!-- Карточка 2 -->
+        <div class="prod-card treadmill-card" data-weight="120" data-speed="18">
+            <div class="card-header">
+                <div>
+                    <div class="prod-title">ZenRun 30</div>
+                    <div class="prod-art">Арт: 26634</div>
+                </div>
+                <div class="price-tag">27 500 MDL</div>
+            </div>
+            <div class="card-details">
+                <div class="detail-item"><strong>Макс. вес:</strong><span>120 кг</span></div>
+                <div class="detail-item"><strong>Полотно:</strong><span>140 x 46 см</span></div>
+                <div class="detail-item" style="grid-column: span 2"><strong>Скорость / Двигатель:</strong><span>18 км/ч (1.75 л.с.)</span></div>
+            </div>
+        </div>
+        <!-- Карточка 3 -->
+        <div class="prod-card treadmill-card" data-weight="120" data-speed="14.8">
+            <div class="card-header">
+                <div>
+                    <div class="prod-title">ZenRun 20</div>
+                    <div class="prod-art">Арт: 26635</div>
+                </div>
+                <div class="price-tag">20 900 MDL</div>
+            </div>
+            <div class="card-details">
+                <div class="detail-item"><strong>Макс. вес:</strong><span>120 кг</span></div>
+                <div class="detail-item"><strong>Полотно:</strong><span>123 x 46 см</span></div>
+                <div class="detail-item" style="grid-column: span 2"><strong>Скорость / Двигатель:</strong><span>14.8 км/ч (BLDC 1.5 л.с.)</span></div>
+            </div>
+        </div>
+        <!-- Карточка 4 -->
+        <div class="prod-card treadmill-card" data-weight="110" data-speed="18">
+            <div class="card-header">
+                <div>
+                    <div class="prod-title">ZenRun 15</div>
+                    <div class="prod-art">Арт: 26826</div>
+                </div>
+                <div class="price-tag">15 600 MDL</div>
+            </div>
+            <div class="card-details">
+                <div class="detail-item"><strong>Макс. вес:</strong><span>110 кг</span></div>
+                <div class="detail-item"><strong>Полотно:</strong><span>122 x 45 см</span></div>
+                <div class="detail-item" style="grid-column: span 2"><strong>Скорость / Двигатель:</strong><span>18 км/ч (1.75 л.с.)</span></div>
+            </div>
+        </div>
+        <!-- Карточка 5 -->
+        <div class="prod-card treadmill-card" data-weight="120" data-speed="12">
+            <div class="card-header">
+                <div>
+                    <div class="prod-title">ZenRun Noon</div>
+                    <div class="prod-art">Арт: 28905</div>
+                </div>
+                <div class="price-tag">8 499 MDL</div>
+            </div>
+            <div class="card-details">
+                <div class="detail-item"><strong>Макс. вес:</strong><span>120 кг</span></div>
+                <div class="detail-item"><strong>Полотно:</strong><span>100 x 40 см</span></div>
+                <div class="detail-item" style="grid-column: span 2"><strong>Скорость / Двигатель:</strong><span>12 км/ч (0.75 л.с.)</span></div>
+            </div>
+        </div>
+        <!-- Карточка 6 -->
+        <div class="prod-card treadmill-card" data-weight="100" data-speed="0">
+            <div class="card-header">
+                <div>
+                    <div class="prod-title">Excel Run</div>
+                    <div class="prod-art">Арт: 2678</div>
+                </div>
+                <div class="price-tag">8 220 MDL</div>
+            </div>
+            <div class="card-details">
+                <div class="detail-item"><strong>Макс. вес:</strong><span>100 кг</span></div>
+                <div class="detail-item"><strong>Полотно:</strong><span>110 x 35 см</span></div>
+                <div class="detail-item" style="grid-column: span 2"><strong>Тип нагрузки:</strong><span>Магнитная (без двигателя)</span></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function filterTreadmills() {
+        const weightValue = document.getElementById('weightFilter').value;
+        const intensityValue = document.getElementById('intensityFilter').value;
+
+        // Фильтрация как строк таблицы, так и мобильных карточек одновременно
+        const elements = document.querySelectorAll('.treadmill-row, .treadmill-card');
+
+        elements.forEach(el => {
+            const maxWeight = parseInt(el.getAttribute('data-weight'));
+            const maxSpeed = parseFloat(el.getAttribute('data-speed'));
+
+            let weightMatch = true;
+            let intensityMatch = true;
+
+            // Логика фильтра по весу
+            if (weightValue !== 'all') {
+                const targetWeight = parseInt(weightValue);
+                if (maxWeight < targetWeight) {
+                    weightMatch = false;
                 }
-                
-                // Intensity filtering
-                if (intensityVal !== 'all') {
-                    if (intensityVal === 'walk') {
-                        // All models can walk, but some are specialized
-                    } else if (intensityVal === 'light') {
-                        if (maxSpeed < 14 && maxSpeed !== 0) { // Excluding too slow, magnetic is special
-                            matchesIntensity = false;
-                        }
-                    } else if (intensityVal === 'pro') {
-                        if (maxSpeed < 16 || incline === 'none') {
-                            matchesIntensity = false;
-                        }
-                    }
-                }
-                
-                // Budget filtering
-                if (budgetVal !== 'all') {
-                    const maxBudget = parseInt(budgetVal);
-                    if (price > maxBudget) {
-                        matchesBudget = false;
-                    }
-                }
-                
-                // Toggle row visibility & visual styling
-                if (matchesWeight && matchesIntensity && matchesBudget) {
-                    row.classList.remove('opacity-25', 'bg-slate-100');
-                    row.style.pointerEvents = 'auto';
-                } else {
-                    row.classList.add('opacity-25', 'bg-slate-100');
-                    row.style.pointerEvents = 'none';
-                }
-            });
-        }
-    </script>
+            }
+
+            // Логика фильтра по интенсивности скорости
+            if (intensityValue !== 'all') {
+                if (intensityValue === 'walk' && maxSpeed > 13) intensityMatch = false;
+                if (intensityValue === 'medium' && (maxSpeed < 13 || maxSpeed > 19)) intensityMatch = false;
+                if (intensityValue === 'pro' && maxSpeed < 20) intensityMatch = false;
+            }
+
+            // Визуальное приглушение неподходящих моделей вместо жесткого удаления
+            if (weightMatch && intensityMatch) {
+                el.classList.remove('fade-out');
+            } else {
+                el.classList.add('fade-out');
+            }
+        });
+    }
+</script>
 </body>
 </html>
